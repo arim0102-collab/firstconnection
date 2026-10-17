@@ -1,0 +1,295 @@
+.record-title {
+  position: absolute;
+  left: 74px;
+  top: 192px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Prelia', serif;
+  font-weight: normal;
+  font-size: 64px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.record-card {
+  position: absolute;
+  left: 66px;
+  top: 302px;
+  width: 1248px;
+  height: 700px;
+  background: #ffffff;
+  border-radius: 20px;
+}
+
+.record-chart {
+  position: absolute;
+  left: 0;
+  top: 83px;
+  width: 1248px;
+  height: 357.889px;
+}
+
+.record-waveform-clip {
+  position: absolute;
+  left: 0;
+  top: 172px;
+  width: 978px;
+  height: 184px;
+  overflow: hidden;
+}
+
+.record-waveform {
+  position: absolute;
+  left: 1189px;
+  top: 22px;
+  width: 4105.259px;
+  height: 160.467px;
+}
+
+/* Figma positions the asset in its own frame via a small negative inset
+   (inset: -0.93% 0 -0.89% 0) rather than stretching it to the frame's
+   rounded-off size — reproduced here so the waveform renders at the
+   source SVG's native size instead of being squashed to fit. */
+.record-waveform-inset {
+  position: absolute;
+  top: -0.93%;
+  right: 0;
+  bottom: -0.89%;
+  left: 0;
+}
+
+.record-waveform-inset img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.record-baseline {
+  position: absolute;
+  /* Figma's spec value is 3px, but the whole .screen is scaled down to
+     fit the viewport (js/stage.js) — at common window sizes that shrinks
+     a 3px line below 2 physical pixels, where anti-aliasing makes it
+     look washed out. Bumped to read clearly at typical scale factors. */
+  top: 353.25px;
+  height: 4.5px;
+  background: #bebbb9;
+}
+
+.record-baseline--left {
+  left: 0;
+  width: 978px;
+}
+
+.record-baseline--right {
+  left: 978px;
+  width: 270px;
+}
+
+.record-dot {
+  position: absolute;
+  left: 972px;
+  top: 348px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #bebbb9;
+}
+
+.record-tooltip {
+  position: absolute;
+  top: 0;
+  width: 381px;
+  height: 98.778px;
+  opacity: 0;
+}
+
+.record-tooltip--1,
+.record-tooltip--2,
+.record-tooltip--3,
+.record-tooltip--4,
+.record-tooltip--5,
+.record-tooltip--6,
+.record-tooltip--7 { left: 787px; }
+
+.record-tooltip img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.record-tooltip p {
+  position: absolute;
+  left: 50%;
+  top: 25.09px;
+  transform: translateX(-50%);
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 23.519px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+
+/* Centered on the same point the static play-triangle occupied
+   (610+31.5/2, 589+36.4/2) so swapping play <-> pause never shifts it. */
+.record-play-btn {
+  position: absolute;
+  left: 603.75px;
+  top: 583.2px;
+  width: 44px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: #bebbb9;
+  cursor: pointer;
+}
+
+.record-play-btn.is-pressed {
+  color: #454443;
+}
+
+.record-play-icon {
+  width: 31.5px;
+  height: 36.373px;
+}
+
+.record-pause-icon {
+  width: 34.093px;
+  height: 39.338px;
+}
+
+.is-icon-hidden {
+  display: none;
+}
+
+.record-divider {
+  position: absolute;
+  left: 1300px;
+  top: 65px;
+  width: 30px;
+  height: 570px;
+}
+
+.record-legend-label {
+  position: absolute;
+  left: 1382px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 36px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.record-legend-row--1 .record-legend-label { top: 69px; }
+.record-legend-row--2 .record-legend-label { top: 249px; }
+.record-legend-row--3 .record-legend-label { top: 429px; }
+.record-legend-row--4 .record-legend-label { top: 609px; }
+
+.record-legend-count {
+  position: absolute;
+  left: 1663px;
+  width: 106px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 48px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.record-legend-row--1 .record-legend-count { top: 64px; }
+.record-legend-row--2 .record-legend-count { top: 244px; }
+.record-legend-row--3 .record-legend-count { top: 424px; }
+.record-legend-row--4 .record-legend-count { top: 604px; }
+
+.record-controls-pill {
+  position: absolute;
+  left: 355px;
+  top: 564px;
+  width: 529px;
+  height: 86px;
+  border: 3px solid #bebbb9;
+  border-radius: 60px;
+}
+
+.record-timer {
+  position: absolute;
+  left: 50%;
+  top: 488px;
+  transform: translateX(-50%);
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  color: #bebbb9;
+  white-space: nowrap;
+}
+
+.record-controls {
+  position: absolute;
+  left: 419px;
+  top: 581px;
+  width: 410.571px;
+  height: 52px;
+}
+
+/* Centered on the same row as .record-controls-pill (564 + 86/2 = 607). */
+.record-reset-btn {
+  position: absolute;
+  left: 75px;
+  top: 577px;
+  width: 60px;
+  height: 60px;
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: 3px solid #bebbb9;
+  border-radius: 30px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.record-reset-btn.is-pressed {
+  border-color: #454443;
+}
+
+.record-reset-btn img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Position modifiers for #resetConfirmDialog's buttons — same slots as
+   .bt-dialog-btn--cancel/--connect in css/bluetooth-modal.css, just with
+   the opposite left/right answer on the left. */
+.reset-dialog-btn--yes {
+  left: 60px;
+  width: 240px;
+}
+
+.reset-dialog-btn--no {
+  left: 310px;
+  width: 240px;
+}
+
+/* Position modifier for #completeDialog's single button — same slot as
+   .bt-dialog-btn--close in css/bluetooth-modal.css. */
+.complete-dialog-btn--go {
+  left: 67px;
+  width: 493px;
+}

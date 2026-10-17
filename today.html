@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오늘의 기록</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/calendar.css">
+<link rel="stylesheet" href="css/today.css">
+<link rel="stylesheet" href="css/bluetooth-modal.css">
+</head>
+<body>
+<div class="screen" data-node-id="78:965">
+
+  <header class="cal-topbar">
+    <a class="icon-btn" href="calendar.html" aria-label="캘린더로 돌아가기">
+      <img src="assets/icons/arrow-back-ios-new.svg" alt="">
+    </a>
+    <button class="icon-btn" type="button" id="menuToggle" aria-label="메뉴" aria-expanded="false" aria-controls="sideMenu">
+      <img src="assets/icons/dehaze.svg" alt="">
+    </button>
+  </header>
+
+  <div class="today-title-row">
+    <h1 class="today-title">Today</h1>
+    <p class="today-date">2026. 10. 19</p>
+  </div>
+
+  <div class="today-dots" id="chartDots">
+    <button type="button" class="today-dot is-active" data-page="0" aria-label="버블 차트 보기"></button>
+    <button type="button" class="today-dot" data-page="1" aria-label="시간대별 차트 보기"></button>
+    <button type="button" class="today-dot" data-page="2" aria-label="파형 차트 보기"></button>
+  </div>
+
+  <button type="button" class="today-icon-btn today-download-btn" id="todayDownloadBtn" aria-label="다운로드">
+    <img src="assets/icons/today-download.svg" alt="">
+  </button>
+  <button type="button" class="today-icon-btn today-share-btn" id="todayShareBtn" aria-label="공유">
+    <img src="assets/icons/today-share.svg" alt="">
+  </button>
+
+  <div class="today-chart" id="chartViewport">
+    <div class="today-chart-track" id="chartTrack">
+
+      <section class="today-chart-page today-bubble-card" aria-label="움직임 버블 차트">
+        <div class="today-bubble-grid"></div>
+        <span class="today-bubble-grid-cross today-bubble-grid-cross--v"></span>
+        <span class="today-bubble-grid-cross today-bubble-grid-cross--h"></span>
+        <div class="today-bubble-group" data-group="big1">
+          <span class="today-bubble" style="left:36.07px; top:55.15px; width:269.394px; height:269.394px; background:#FF9294; opacity:.5; animation-name: today-pop-0"></span>
+        </div>
+        <div class="today-bubble-group" data-group="big2">
+          <span class="today-bubble" style="left:274px; top:377px; width:269.394px; height:269.394px; background:#FF9294; opacity:.5; animation-name: today-pop-0"></span>
+        </div>
+        <div class="today-bubble-group" data-group="scatter4">
+          <span class="today-bubble" style="left:494.25px; top:233.33px; width:25.455px; height:25.455px; background:#FFE7A6; opacity:.8; animation-name: today-pop-1"></span>
+          <span class="today-bubble" style="left:494.25px; top:210px; width:16.97px; height:16.97px; background:#FFE7A6; opacity:.8; animation-name: today-pop-1"></span>
+          <span class="today-bubble" style="left:479.4px; top:201.52px; width:25.455px; height:25.455px; background:#FFE7A6; opacity:.8; animation-name: today-pop-1"></span>
+          <span class="today-bubble" style="left:460.31px; top:156.97px; width:19.091px; height:19.091px; background:#FFE7A6; opacity:.8; animation-name: today-pop-1"></span>
+        </div>
+        <div class="today-bubble-group" data-group="scatter7">
+          <span class="today-bubble" style="left:227.77px; top:405.55px; width:25.455px; height:25.455px; background:#FF92CE; opacity:.5; animation-name: today-pop-1"></span>
+          <span class="today-bubble" style="left:259.59px; top:426.76px; width:16.97px; height:16.97px; background:#FF92CE; opacity:.5; animation-name: today-pop-1"></span>
+          <span class="today-bubble" style="left:243px; top:439px; width:25.455px; height:25.455px; background:#FF92CE; opacity:.5; animation-name: today-pop-1"></span>
+          <span class="today-bubble" style="left:261.71px; top:373.73px; width:16.97px; height:16.97px; background:#FF92CE; opacity:.5; animation-name: today-pop-1"></span>
+          <span class="today-bubble" style="left:285.04px; top:479.79px; width:21.212px; height:21.212px; background:#FF92CE; opacity:.5; animation-name: today-pop-1"></span>
+          <span class="today-bubble" style="left:150px; top:361px; width:25.455px; height:25.455px; background:#FF92CE; opacity:.5; animation-name: today-pop-1"></span>
+          <span class="today-bubble" style="left:166px; top:426px; width:12.727px; height:12.727px; background:#FF92CE; opacity:.5; animation-name: today-pop-1"></span>
+        </div>
+        <div class="today-bubble-group" data-group="single">
+          <span class="today-bubble" style="left:479.4px; top:258.79px; width:171.818px; height:171.818px; background:#FFA382; opacity:.5; animation-name: today-pop-2"></span>
+        </div>
+        <div class="today-bubble-group" data-group="trio">
+          <span class="today-bubble" style="left:193px; top:188px; width:101.818px; height:101.818px; background:#FF92CE; opacity:.5; animation-name: today-pop-3"></span>
+          <span class="today-bubble" style="left:263px; top:223px; width:101.818px; height:101.818px; background:#FF92CE; opacity:.5; animation-name: today-pop-3"></span>
+          <span class="today-bubble" style="left:358px; top:188px; width:101.818px; height:101.818px; background:#FF92CE; opacity:.5; animation-name: today-pop-3"></span>
+        </div>
+        <div class="today-bubble-group" data-group="pair">
+          <span class="today-bubble" style="left:95px; top:480px; width:101.818px; height:101.818px; background:#FFE7A6; opacity:.8; animation-name: today-pop-3"></span>
+          <span class="today-bubble" style="left:177px; top:512px; width:101.818px; height:101.818px; background:#FFE7A6; opacity:.8; animation-name: today-pop-3"></span>
+        </div>
+
+        <div class="today-bubble-tooltip today-bubble-tooltip--pair" data-tooltip-for="pair">
+          <img src="assets/icons/today-tooltip-wide.svg" alt="">
+          <p class="today-bubble-tooltip-time">00 : 00 : 03</p>
+          <p class="today-bubble-tooltip-text">미세한 팔랑거림 <span style="color:#FF9294;">2</span>회</p>
+        </div>
+        <div class="today-bubble-tooltip today-bubble-tooltip--trio" data-tooltip-for="trio">
+          <img src="assets/icons/today-tooltip-narrow.svg" alt="">
+          <p class="today-bubble-tooltip-time">00 : 00 : 10</p>
+          <p class="today-bubble-tooltip-text">딸꾹질 <span style="color:#FF9294;">3</span>회</p>
+        </div>
+        <div class="today-bubble-tooltip today-bubble-tooltip--single" data-tooltip-for="single">
+          <img src="assets/icons/today-tooltip-narrow.svg" alt="">
+          <p class="today-bubble-tooltip-time">00 : 00 : 25</p>
+          <p class="today-bubble-tooltip-text">기지개 <span style="color:#FF9294;">1</span>회</p>
+        </div>
+        <div class="today-bubble-tooltip today-bubble-tooltip--scatter7" data-tooltip-for="scatter7">
+          <img src="assets/icons/today-tooltip-wide.svg" alt="">
+          <p class="today-bubble-tooltip-time">00 : 00 : 30</p>
+          <p class="today-bubble-tooltip-text">규칙적인 잔진동 <span style="color:#FF9294;">8</span>회</p>
+        </div>
+        <div class="today-bubble-tooltip today-bubble-tooltip--scatter4" data-tooltip-for="scatter4">
+          <img src="assets/icons/today-tooltip-narrow.svg" alt="">
+          <p class="today-bubble-tooltip-time">00 : 00 : 36</p>
+          <p class="today-bubble-tooltip-text">꼼지락 <span style="color:#FF9294;">4</span>회</p>
+        </div>
+        <div class="today-bubble-tooltip today-bubble-tooltip--big2" data-tooltip-for="big2">
+          <img src="assets/icons/today-tooltip-medium.svg" alt="">
+          <p class="today-bubble-tooltip-time">00 : 00 : 17</p>
+          <p class="today-bubble-tooltip-text">몸 뒤집기 <span style="color:#FF9294;">1</span>회</p>
+        </div>
+        <div class="today-bubble-tooltip today-bubble-tooltip--big1" data-tooltip-for="big1">
+          <img src="assets/icons/today-tooltip-medium.svg" alt="">
+          <p class="today-bubble-tooltip-time">00 : 00 : 44</p>
+          <p class="today-bubble-tooltip-text">움찔거림 <span style="color:#FF9294;">1</span>회</p>
+        </div>
+      </section>
+
+      <section class="today-chart-page today-clock-card" aria-label="시간대별 차트">
+        <svg class="today-clock-svg" viewBox="0 0 702.121 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="702.121" height="700" rx="42.4242" fill="white"/>
+          <path d="M351.682 42.4242L351.682 201.812" stroke-width="2.12121" stroke="#D9D9D9"/>
+          <path d="M553.905 348.939C553.905 461.209 462.892 552.222 350.622 552.222C238.352 552.222 147.339 461.209 147.339 348.939C147.339 236.669 238.352 145.656 350.622 145.656C462.892 145.656 553.905 236.669 553.905 348.939Z" stroke-width="2.12121" stroke="#D9D9D9"/>
+          <path d="M604.992 348.94C604.992 489.424 491.107 603.308 350.623 603.308C210.139 603.308 96.2541 489.424 96.2541 348.94C96.2541 208.456 210.139 94.5711 350.623 94.5711C491.107 94.5711 604.992 208.456 604.992 348.94Z" stroke-width="2.12121" stroke="#D9D9D9"/>
+          <path d="M656.076 348.939C656.076 517.637 519.319 654.394 350.621 654.394C181.924 654.394 45.1669 517.637 45.1669 348.939C45.1669 180.242 181.924 43.4848 350.621 43.4848C519.319 43.4848 656.076 180.242 656.076 348.939Z" stroke-width="2.12121" stroke="#D9D9D9"/>
+          <path class="today-clock-vector today-clock-vector--3" data-clock-index="3" d="M245.099 102.548C238.285 144.687 239.465 134.882 209.885 155.97C180.306 177.058 211.719 191.449 153.544 236.103C95.3689 280.758 83.1178 327.483 154.953 387.934C226.787 448.386 118.331 541.171 218.337 566.477C318.342 591.782 309.697 635.303 366.232 625.522C457.985 609.648 392.995 532.736 484.549 552.418C576.104 572.1 574.627 538.281 599.242 487.879C621.515 442.273 713.788 359.545 663.433 289.525C618.385 226.885 667.121 194.091 570.47 186.899C457.051 178.459 502.858 162.987 500.043 102.548C497.772 53.7959 426.799 26.6326 383.135 87.0839C339.47 147.535 297.889 82.5151 285.232 73.0757C272.576 63.6364 251.516 62.8588 245.099 102.548Z" fill="#FFE7A6" fill-opacity="0.5"/>
+          <path class="today-clock-vector today-clock-vector--2" data-clock-index="2" d="M399.4 112.699C387.274 127.822 366.303 144.008 338.763 142.251C311.223 140.495 265.434 115.514 251.332 142.251C237.231 168.989 256.973 181.655 206.207 225.28C155.441 268.904 216.08 264.683 178.004 336.453C139.928 408.223 231.657 437.775 233 454.662C240.05 543.319 261.615 517.559 296.456 540.505C373.546 591.275 481.188 474.364 523.493 474.364C565.798 474.364 529.135 439.182 554.517 418.073C579.898 396.965 622.206 385.707 599.644 363.19C581.594 345.178 577.081 312.529 577.081 298.457C596.823 190.098 502.342 142.251 476.959 142.251C456.653 142.251 446.876 129.117 444.525 122.55C438.415 107.539 421.532 85.0968 399.4 112.699Z" fill="#FFA382" fill-opacity="0.4"/>
+          <path class="today-clock-vector today-clock-vector--1" data-clock-index="1" d="M241.16 204.146C265.349 184.777 260.983 148.01 313.843 174.024C366.703 200.038 373.047 185.799 408.992 178.132C453.923 168.547 529.249 194.562 525.285 249.329C522.113 293.143 547.75 327.372 559.644 332.849C571.537 338.326 573.387 356.673 559.644 364.34C542.464 373.924 514.712 431.43 510.748 453.337C506.783 475.244 501.497 490.305 465.817 494.412C430.136 498.52 391.812 566.979 327.058 525.904C262.304 484.828 286.091 509.473 238.517 468.398C200.457 435.538 210.765 398.57 194.907 379.401C179.049 360.232 202.836 364.34 185.656 323.265C168.476 282.19 201.71 235.734 241.16 204.146Z" fill="#FF9294" fill-opacity="0.5"/>
+          <path class="today-clock-vector today-clock-vector--0" data-clock-index="0" d="M371.384 173.146C309.582 147.145 295.392 188.92 256.354 223.71C190.28 282.596 177.282 359.601 229.741 430.959C270.967 487.038 264.918 533.674 395.334 492.839C525.525 452.074 527.544 375.087 528.377 343.318L528.381 343.154C529.212 311.486 502.63 319.819 514.26 253.983C525.889 188.147 446.975 229.815 451.128 196.481C455.505 161.352 448.636 205.648 371.384 173.146Z" fill="#FF92CE" fill-opacity="0.8"/>
+          <circle cx="350.621" cy="348.939" r="153.258" fill="white"/>
+        </svg>
+        <div class="today-clock-label" data-clock-label="0">
+          <p class="today-clock-label-title">고요한 움직임</p>
+          <p class="today-clock-label-value"><span style="color:#FF92CE;">30-38</span> dB</p>
+        </div>
+        <div class="today-clock-label" data-clock-label="1">
+          <p class="today-clock-label-title">안정적인 움직임</p>
+          <p class="today-clock-label-value"><span style="color:#FF9294;">38-48</span> dB</p>
+        </div>
+        <div class="today-clock-label" data-clock-label="2">
+          <p class="today-clock-label-title">리듬있는 움직임</p>
+          <p class="today-clock-label-value"><span style="color:#FFA382;">40-50</span> dB</p>
+        </div>
+        <div class="today-clock-label" data-clock-label="3">
+          <p class="today-clock-label-title">활발한 움직임</p>
+          <p class="today-clock-label-value"><span style="color:#FFD04E;">50-70</span> dB</p>
+        </div>
+      </section>
+
+      <section class="today-chart-page today-wave-card" aria-label="파형 차트">
+        <img class="today-wave-nav" src="assets/icons/today-page3-nav-arrows.svg" alt="">
+        <button type="button" class="today-wave-nav-btn today-wave-nav-btn--prev" id="wavePrevBtn" aria-label="이전 구간 보기"></button>
+        <button type="button" class="today-wave-nav-btn today-wave-nav-btn--next" id="waveNextBtn" aria-label="다음 구간 보기"></button>
+        <div class="today-wave-clip">
+          <img class="today-wave-img" id="waveImg" src="assets/icons/today-page3-waveform.svg" alt="">
+        </div>
+        <img class="today-wave-divider" src="assets/icons/today-page3-divider.svg" alt="">
+
+        <div class="today-wave-tooltip today-wave-tooltip--wide" data-wave-tooltip="0">
+          <img src="assets/icons/today-tooltip-wide.svg" alt="">
+          <p class="today-wave-tooltip-time">00 : 00 : 03</p>
+          <p class="today-wave-tooltip-text">미세한 팔랑거림 <span style="color:#FF9294;">2</span>회</p>
+        </div>
+        <div class="today-wave-tooltip today-wave-tooltip--narrow" data-wave-tooltip="1">
+          <img src="assets/icons/today-tooltip-narrow.svg" alt="">
+          <p class="today-wave-tooltip-time">00 : 00 : 10</p>
+          <p class="today-wave-tooltip-text">딸꾹질 <span style="color:#FF9294;">3</span>회</p>
+        </div>
+        <div class="today-wave-tooltip today-wave-tooltip--medium" data-wave-tooltip="2">
+          <img src="assets/icons/today-tooltip-medium.svg" alt="">
+          <p class="today-wave-tooltip-time">00 : 00 : 17</p>
+          <p class="today-wave-tooltip-text">몸 뒤집기 <span style="color:#FF9294;">1</span>회</p>
+        </div>
+        <div class="today-wave-tooltip today-wave-tooltip--narrow" data-wave-tooltip="3">
+          <img src="assets/icons/today-tooltip-narrow.svg" alt="">
+          <p class="today-wave-tooltip-time">00 : 00 : 25</p>
+          <p class="today-wave-tooltip-text">기지개 <span style="color:#FF9294;">1</span>회</p>
+        </div>
+        <div class="today-wave-tooltip today-wave-tooltip--wide" data-wave-tooltip="4">
+          <img src="assets/icons/today-tooltip-wide.svg" alt="">
+          <p class="today-wave-tooltip-time">00 : 00 : 30</p>
+          <p class="today-wave-tooltip-text">규칙적인 잔진동 <span style="color:#FF9294;">8</span>회</p>
+        </div>
+        <div class="today-wave-tooltip today-wave-tooltip--narrow" data-wave-tooltip="5">
+          <img src="assets/icons/today-tooltip-narrow.svg" alt="">
+          <p class="today-wave-tooltip-time">00 : 00 : 36</p>
+          <p class="today-wave-tooltip-text">꼼지락 <span style="color:#FF9294;">4</span>회</p>
+        </div>
+        <div class="today-wave-tooltip today-wave-tooltip--medium" data-wave-tooltip="6">
+          <img src="assets/icons/today-tooltip-medium.svg" alt="">
+          <p class="today-wave-tooltip-time">00 : 00 : 44</p>
+          <p class="today-wave-tooltip-text">움찔거림 <span style="color:#FF9294;">1</span>회</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="today-stat-card" style="left:805px; top:302px;">
+    <p class="today-stat-label">총 감지 시간</p>
+    <p class="today-stat-value">4h 2m 12s</p>
+  </div>
+  <div class="today-stat-card" style="left:1349px; top:302px;">
+    <p class="today-stat-label">평균 태동 횟수</p>
+    <p class="today-stat-value">시간당 3회</p>
+  </div>
+
+  <h2 class="today-timeline-title">Movement Timeline</h2>
+
+  <div class="today-timeline">
+    <div class="today-timeline-list">
+      <div class="today-timeline-row">
+        <div class="today-timeline-cluster">
+          <span class="today-timeline-dot" style="background:#FFE7A5;"></span>
+          <span class="today-timeline-time">00 : 00 : 03</span>
+          <span class="today-timeline-tag">고요</span>
+        </div>
+        <span class="today-timeline-name">미세한 팔랑거림</span>
+        <span class="today-timeline-count"><span style="color:#FFD04E;">2</span><span>회</span></span>
+      </div>
+      <div class="today-timeline-row">
+        <div class="today-timeline-cluster">
+          <span class="today-timeline-dot" style="background:#FF92CE;"></span>
+          <span class="today-timeline-time">00 : 00 : 10</span>
+          <span class="today-timeline-tag">리듬</span>
+        </div>
+        <span class="today-timeline-name">딸꾹질</span>
+        <span class="today-timeline-count"><span style="color:#FF92CE;">3</span><span>회</span></span>
+      </div>
+      <div class="today-timeline-row">
+        <div class="today-timeline-cluster">
+          <span class="today-timeline-dot" style="background:#FF9294;"></span>
+          <span class="today-timeline-time">00 : 00 : 17</span>
+          <span class="today-timeline-tag">활발</span>
+        </div>
+        <span class="today-timeline-name">몸 뒤집기</span>
+        <span class="today-timeline-count"><span style="color:#FF9294;">1</span><span>회</span></span>
+      </div>
+      <div class="today-timeline-row">
+        <div class="today-timeline-cluster">
+          <span class="today-timeline-dot" style="background:#FFA382;"></span>
+          <span class="today-timeline-time">00 : 00 : 25</span>
+          <span class="today-timeline-tag">안정</span>
+        </div>
+        <span class="today-timeline-name">기지개</span>
+        <span class="today-timeline-count"><span style="color:#FFA382;">1</span><span>회</span></span>
+      </div>
+      <div class="today-timeline-row">
+        <div class="today-timeline-cluster">
+          <span class="today-timeline-dot" style="background:#FF92CE;"></span>
+          <span class="today-timeline-time">00 : 00 : 30</span>
+          <span class="today-timeline-tag">리듬</span>
+        </div>
+        <span class="today-timeline-name">규칙적인 잔진동</span>
+        <span class="today-timeline-count"><span style="color:#FF92CE;">8</span><span>회</span></span>
+      </div>
+      <div class="today-timeline-row">
+        <div class="today-timeline-cluster">
+          <span class="today-timeline-dot" style="background:#FFE7A5;"></span>
+          <span class="today-timeline-time">00 : 00 : 36</span>
+          <span class="today-timeline-tag">고요</span>
+        </div>
+        <span class="today-timeline-name">꼼지락</span>
+        <span class="today-timeline-count"><span style="color:#FFD04E;">4</span><span>회</span></span>
+      </div>
+      <div class="today-timeline-row">
+        <div class="today-timeline-cluster">
+          <span class="today-timeline-dot" style="background:#FF9294;"></span>
+          <span class="today-timeline-time">00 : 00 : 44</span>
+          <span class="today-timeline-tag">활발</span>
+        </div>
+        <span class="today-timeline-name">움찔거림</span>
+        <span class="today-timeline-count"><span style="color:#FF9294;">1</span><span>회</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-scrim" id="menuScrim"></div>
+  <nav class="sidenav sidenav--drawer" id="sideMenu" aria-label="주 메뉴">
+    <ul>
+      <li class="nav-item">
+        <a class="nav-content nav-link" href="index.html"
+           data-icon-default="assets/icons/home.svg"
+           data-icon-active="assets/icons/home-active.svg">
+          <img src="assets/icons/home.svg" alt="">
+          <span>메인 화면</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="nav-content nav-link bt-connect-trigger"
+                data-icon-default="assets/icons/bluetooth.svg"
+                data-icon-active="assets/icons/bluetooth-active.svg">
+          <img src="assets/icons/bluetooth.svg" alt=""><span>블루투스</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <a class="nav-content nav-link" href="record.html"
+           data-icon-default="assets/icons/album.svg"
+           data-icon-active="assets/icons/album-active.svg">
+          <img src="assets/icons/album.svg" alt="">
+          <span>기록 시작</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-content nav-link" href="calendar.html"
+           data-icon-default="assets/icons/calendar-today.svg"
+           data-icon-active="assets/icons/calendar-today-active.svg">
+          <img src="assets/icons/calendar-today.svg" alt="">
+          <span>캘린더</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/account-circle.svg" alt=""><span>마이홈</span></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/brightness5.svg" alt=""><span>설정</span></span>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="bt-scrim" id="btScrim"></div>
+  <div class="bt-dialog" id="btConfirmDialog" role="dialog" aria-modal="true" aria-labelledby="btConfirmTitle">
+    <p class="bt-dialog-title" id="btConfirmTitle">패치와 연결하시겠습니까?</p>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--cancel" id="btCancelBtn">취소</button>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--connect" id="btConnectBtn">연결하기</button>
+  </div>
+  <div class="bt-dialog" id="btSuccessDialog" role="dialog" aria-modal="true" aria-labelledby="btSuccessTitle">
+    <p class="bt-dialog-title" id="btSuccessTitle">패치와 연결되었습니다</p>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--close" id="btCloseBtn">창 닫기</button>
+  </div>
+
+</div>
+<script src="js/stage.js"></script>
+<script src="js/side-menu.js"></script>
+<script src="js/nav-link.js"></script>
+<script src="js/today.js"></script>
+<script src="js/bluetooth-connect.js"></script>
+</body>
+</html>

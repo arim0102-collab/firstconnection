@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캘린더</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/calendar.css">
+<link rel="stylesheet" href="css/bluetooth-modal.css">
+</head>
+<body>
+<div class="screen" data-node-id="90:191">
+
+  <header class="cal-topbar">
+    <a class="icon-btn" href="index.html" aria-label="홈 화면으로 돌아가기">
+      <img src="assets/icons/arrow-back-ios-new.svg" alt="">
+    </a>
+    <button class="icon-btn" type="button" id="menuToggle" aria-label="메뉴" aria-expanded="false" aria-controls="sideMenu">
+      <img src="assets/icons/dehaze.svg" alt="">
+    </button>
+  </header>
+
+  <div class="cal-title-row">
+    <h1 class="cal-title">Calender</h1>
+    <p class="cal-date">2026. 10. 19</p>
+  </div>
+
+  <section class="cal-card" aria-label="October calendar">
+    <h2 class="cal-month">October</h2>
+
+    <div class="cal-weekdays">
+      <span class="cal-weekday">Sun</span>
+      <span class="cal-weekday">Mon</span>
+      <span class="cal-weekday">Tue</span>
+      <span class="cal-weekday">Wed</span>
+      <span class="cal-weekday">Thu</span>
+      <span class="cal-weekday">Fri</span>
+      <span class="cal-weekday">Sat</span>
+    </div>
+
+    <div class="cal-grid">
+      <!-- Row 1: Sep 27 - Oct 3 -->
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">27</span></div>
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">28</span></div>
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">29</span></div>
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">30</span></div>
+      <div class="cal-day cal-day--mark cal-day--mark-4"><span class="cal-day-num">1</span></div>
+      <div class="cal-day"><span class="cal-day-num">2</span></div>
+      <div class="cal-day cal-day--sat"><span class="cal-day-num">3</span></div>
+
+      <!-- Row 2: Oct 4-10 -->
+      <div class="cal-day cal-day--sun"><span class="cal-day-num">4</span></div>
+      <div class="cal-day cal-day--mark cal-day--mark-3"><span class="cal-day-num">5</span></div>
+      <div class="cal-day cal-day--mark cal-day--mark-3"><span class="cal-day-num">6</span></div>
+      <div class="cal-day cal-day--mark cal-day--mark-4"><span class="cal-day-num">7</span></div>
+      <div class="cal-day"><span class="cal-day-num">8</span></div>
+      <div class="cal-day cal-day--mark cal-day--mark-3"><span class="cal-day-num">9</span></div>
+      <div class="cal-day cal-day--sat"><span class="cal-day-num">10</span></div>
+
+      <!-- Row 3: Oct 11-17 -->
+      <div class="cal-day cal-day--sun cal-day--mark cal-day--mark-4"><span class="cal-day-num">11</span></div>
+      <div class="cal-day cal-day--mark cal-day--mark-2"><span class="cal-day-num">12</span></div>
+      <div class="cal-day"><span class="cal-day-num">13</span></div>
+      <div class="cal-day cal-day--mark cal-day--mark-2"><span class="cal-day-num">14</span></div>
+      <div class="cal-day cal-day--mark cal-day--mark-2"><span class="cal-day-num">15</span></div>
+      <div class="cal-day"><span class="cal-day-num">16</span></div>
+      <div class="cal-day cal-day--sat cal-day--mark cal-day--mark-1"><span class="cal-day-num">17</span></div>
+
+      <!-- Row 4: Oct 18-24 -->
+      <div class="cal-day cal-day--sun cal-day--mark cal-day--mark-2"><span class="cal-day-num">18</span></div>
+      <a class="cal-day cal-day--today" href="today.html" aria-label="오늘의 기록 보러가기">
+        <span class="cal-today-dot"><img src="assets/icons/cal-dot-small.svg" alt=""></span>
+        <span class="cal-day-num">19</span>
+      </a>
+      <div class="cal-day"><span class="cal-day-num">20</span></div>
+      <div class="cal-day"><span class="cal-day-num">21</span></div>
+      <div class="cal-day"><span class="cal-day-num">22</span></div>
+      <div class="cal-day"><span class="cal-day-num">23</span></div>
+      <div class="cal-day cal-day--sat"><span class="cal-day-num">24</span></div>
+
+      <!-- Row 5: Oct 25-31 -->
+      <div class="cal-day cal-day--sun"><span class="cal-day-num">25</span></div>
+      <div class="cal-day"><span class="cal-day-num">26</span></div>
+      <div class="cal-day"><span class="cal-day-num">27</span></div>
+      <div class="cal-day"><span class="cal-day-num">28</span></div>
+      <div class="cal-day"><span class="cal-day-num">29</span></div>
+      <div class="cal-day"><span class="cal-day-num">30</span></div>
+      <div class="cal-day cal-day--sat"><span class="cal-day-num">31</span></div>
+
+      <!-- Row 6: Nov 1-7 -->
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">1</span></div>
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">2</span></div>
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">3</span></div>
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">4</span></div>
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">5</span></div>
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">6</span></div>
+      <div class="cal-day cal-day--muted"><span class="cal-day-num">7</span></div>
+    </div>
+  </section>
+
+  <aside class="month-panel" aria-label="월 선택">
+    <h2 class="month-panel-year">2026</h2>
+    <div class="month-picker">
+      <div class="month-scroll" id="monthScroll">
+        <ul class="month-list" id="monthList">
+          <li data-month="January">January</li>
+          <li data-month="February">February</li>
+          <li data-month="March">March</li>
+          <li data-month="April">April</li>
+          <li data-month="May">May</li>
+          <li data-month="June">June</li>
+          <li data-month="July">July</li>
+          <li data-month="August">August</li>
+          <li data-month="September">September</li>
+          <li data-month="October" class="month-list-item--current">October</li>
+          <li data-month="November">November</li>
+          <li data-month="December">December</li>
+        </ul>
+      </div>
+      <div class="month-picker-fade month-picker-fade--top"></div>
+      <div class="month-picker-fade month-picker-fade--bottom"></div>
+    </div>
+  </aside>
+
+  <div class="menu-scrim" id="menuScrim"></div>
+  <nav class="sidenav sidenav--drawer" id="sideMenu" aria-label="주 메뉴">
+    <ul>
+      <li class="nav-item">
+        <a class="nav-content nav-link" href="index.html"
+           data-icon-default="assets/icons/home.svg"
+           data-icon-active="assets/icons/home-active.svg">
+          <img src="assets/icons/home.svg" alt="">
+          <span>메인 화면</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="nav-content nav-link bt-connect-trigger"
+                data-icon-default="assets/icons/bluetooth.svg"
+                data-icon-active="assets/icons/bluetooth-active.svg">
+          <img src="assets/icons/bluetooth.svg" alt=""><span>블루투스</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <a class="nav-content nav-link" href="record.html"
+           data-icon-default="assets/icons/album.svg"
+           data-icon-active="assets/icons/album-active.svg">
+          <img src="assets/icons/album.svg" alt="">
+          <span>기록 시작</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/calendar-today-active.svg" alt=""><span class="nav-content--active">캘린더</span></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/account-circle.svg" alt=""><span>마이홈</span></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/brightness5.svg" alt=""><span>설정</span></span>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="bt-scrim" id="btScrim"></div>
+  <div class="bt-dialog" id="btConfirmDialog" role="dialog" aria-modal="true" aria-labelledby="btConfirmTitle">
+    <p class="bt-dialog-title" id="btConfirmTitle">패치와 연결하시겠습니까?</p>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--cancel" id="btCancelBtn">취소</button>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--connect" id="btConnectBtn">연결하기</button>
+  </div>
+  <div class="bt-dialog" id="btSuccessDialog" role="dialog" aria-modal="true" aria-labelledby="btSuccessTitle">
+    <p class="bt-dialog-title" id="btSuccessTitle">패치와 연결되었습니다</p>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--close" id="btCloseBtn">창 닫기</button>
+  </div>
+
+</div>
+<script src="js/stage.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/side-menu.js"></script>
+<script src="js/nav-link.js"></script>
+<script src="js/led-serial.js"></script>
+<script src="js/led-wifi.js"></script>
+<script src="js/led-transport.js"></script>
+<script src="js/bluetooth-connect.js"></script>
+</body>
+</html>

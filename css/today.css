@@ -1,0 +1,660 @@
+.today-title-row {
+  position: absolute;
+  left: 74px;
+  top: 162px;
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+
+.today-title {
+  font-family: 'Prelia', serif;
+  font-weight: normal;
+  font-size: 64px;
+  color: #454443;
+}
+
+.today-date {
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 24px;
+  color: #454443;
+}
+
+.today-dots {
+  position: absolute;
+  left: 624px;
+  top: 227px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.today-dot {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #bebbb9;
+  cursor: pointer;
+}
+
+.today-dot.is-active {
+  background: #ff9294;
+}
+
+.today-icon-btn {
+  position: absolute;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.today-icon-btn img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.today-download-btn {
+  left: 1735px;
+  top: 208px;
+  width: 50px;
+  height: 50px;
+}
+
+.today-share-btn {
+  left: 1810px;
+  top: 211px;
+  width: 44.444px;
+  height: 44.444px;
+}
+
+/* Chart carousel */
+.today-chart {
+  position: absolute;
+  left: 74px;
+  top: 302px;
+  width: 700px;
+  height: 700px;
+  overflow: hidden;
+}
+
+.today-chart-track {
+  display: flex;
+  gap: 97px;
+  height: 700px;
+  transition: transform 0.3s ease;
+}
+
+.today-chart-page {
+  position: relative;
+  flex: 0 0 700px;
+  width: 700px;
+  height: 700px;
+}
+
+/* Page 1: bubble chart */
+.today-bubble-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.today-bubble-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right, #ededed 0, #ededed 2.12px, transparent 2.12px, transparent 116.67px),
+    repeating-linear-gradient(to bottom, #ededed 0, #ededed 2.12px, transparent 2.12px, transparent 116.67px);
+}
+
+/* The two lines through the card's exact center are a darker, separate
+   crosshair (#bebbb9), not part of the lighter (#ededed) regular grid. */
+.today-bubble-grid-cross {
+  position: absolute;
+  background: #bebbb9;
+}
+
+.today-bubble-grid-cross--v {
+  left: 350px;
+  top: 0;
+  width: 2.12px;
+  height: 100%;
+  transform: translateX(-1.06px);
+}
+
+.today-bubble-grid-cross--h {
+  left: 0;
+  top: 350px;
+  width: 100%;
+  height: 2.12px;
+  transform: translateY(-1.06px);
+}
+
+.today-bubble {
+  position: absolute;
+  border-radius: 50%;
+  scale: 0;
+  animation-duration: 40595.232ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes today-pop-0 {
+  0% { animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4); scale: 0; }
+  0.998% { scale: 1; }
+  100% { scale: 1; }
+}
+
+@keyframes today-pop-1 {
+  0% { scale: 0; }
+  2.463% { animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4); scale: 0; }
+  3.461% { scale: 1; }
+  100% { scale: 1; }
+}
+
+@keyframes today-pop-2 {
+  0% { scale: 0; }
+  0.493% { animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4); scale: 0; }
+  1.49% { scale: 1; }
+  100% { scale: 1; }
+}
+
+@keyframes today-pop-3 {
+  0% { scale: 0; }
+  1.478% { animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4); scale: 0; }
+  2.476% { scale: 1; }
+  100% { scale: 1; }
+}
+
+/* Clicking a bubble group darkens its bubbles slightly and shows its
+   tooltip above it (node 202:646/202:650/151:995 -> 210:791/210:812/210:831). */
+.today-bubble-group {
+  cursor: pointer;
+}
+
+.today-bubble-group.is-active .today-bubble {
+  filter: brightness(0.85);
+}
+
+.today-bubble-tooltip {
+  position: absolute;
+  height: 142.122px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 5;
+}
+
+.today-bubble-tooltip.is-visible {
+  opacity: 1;
+}
+
+.today-bubble-tooltip img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.today-bubble-tooltip-time {
+  position: absolute;
+  left: 74px;
+  top: 28px;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 19.091px;
+  color: #bebbb9;
+  white-space: nowrap;
+}
+
+.today-bubble-tooltip-text {
+  position: absolute;
+  left: 74px;
+  top: 57px;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 27.576px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.today-bubble-tooltip--pair {
+  left: 0;
+  top: 322px;
+  width: 398.788px;
+}
+
+.today-bubble-tooltip--trio {
+  left: 189px;
+  top: 30px;
+  width: 274px;
+}
+
+.today-bubble-tooltip--single {
+  left: 426px;
+  top: 101px;
+  width: 274px;
+}
+
+.today-bubble-tooltip--scatter7 {
+  left: 29px;
+  top: 203px;
+  width: 398.788px;
+}
+
+.today-bubble-tooltip--scatter4 {
+  left: 353px;
+  top: 5px;
+  width: 274px;
+}
+
+.today-bubble-tooltip--big2 {
+  left: 257px;
+  top: 219px;
+  width: 303px;
+}
+
+/* big1 sits right at the card's top edge (top:55), so there's no room to
+   show its tooltip fully above it — pinned near the frame's own top edge
+   instead (with a small margin so it doesn't touch the border), overlapping
+   the bubble rather than spilling outside the card. */
+.today-bubble-tooltip--big1 {
+  left: 19px;
+  top: 12px;
+  width: 303px;
+}
+
+/* Page 2: clock/time-of-day chart. The 4 blob paths pop in from the
+   center, staggered innermost-first (node 206:757) — paused until the
+   carousel actually brings this page into view (js/today.js), so the
+   motion plays in real time instead of finishing off-screen, then holds
+   on its last frame (animation-fill-mode: forwards, no looping). */
+.today-clock-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.today-clock-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.today-clock-vector {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-duration: 2000ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-play-state: paused;
+}
+
+.today-clock-vector--0 { animation-name: today-clock-pop-0; }
+.today-clock-vector--1 { animation-name: today-clock-pop-1; }
+.today-clock-vector--2 { animation-name: today-clock-pop-2; }
+.today-clock-vector--3 { animation-name: today-clock-pop-3; }
+
+/* Clicking a blob (node 206:763/764/765/766) darkens it slightly and shows
+   its dB readout centered in the chart; clicking another clears this one
+   first (js/today.js), so only one blob/readout is active at a time. */
+.today-clock-vector.is-active {
+  filter: brightness(0.85);
+}
+
+/* dB readout (node 221:1101), centered on the chart's own center
+   (350.621, 348.939) — toggled by clicking the innermost blob. */
+.today-clock-label {
+  position: absolute;
+  left: 242.99px;
+  top: 308px;
+  width: 215px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.today-clock-label.is-visible {
+  opacity: 1;
+}
+
+.today-clock-label-title {
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: #000000;
+}
+
+.today-clock-label-value {
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  color: #000000;
+}
+
+@keyframes today-clock-pop-0 {
+  0% { scale: 0; }
+  9.9% { animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4); scale: 0; }
+  20% { scale: 1; }
+  100% { scale: 1; }
+}
+
+@keyframes today-clock-pop-1 {
+  0% { scale: 0; }
+  20% { animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4); scale: 0; }
+  30% { scale: 1; }
+  100% { scale: 1; }
+}
+
+@keyframes today-clock-pop-2 {
+  0% { scale: 0; }
+  30% { animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4); scale: 0; }
+  40% { scale: 1; }
+  100% { scale: 1; }
+}
+
+@keyframes today-clock-pop-3 {
+  0% { scale: 0; }
+  40% { animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4); scale: 0; }
+  50% { scale: 1; }
+  100% { scale: 1; }
+}
+
+/* Page 3: waveform chart */
+.today-wave-card {
+  background: #ffffff;
+  border-radius: 42.424px;
+  overflow: hidden;
+}
+
+.today-wave-nav {
+  position: absolute;
+  left: 50%;
+  top: 49.05%;
+  transform: translate(-50%, -50%);
+  width: 576.97px;
+  pointer-events: none;
+}
+
+/* Invisible hit targets sized/centered over the prev/next arrows drawn in
+   .today-wave-nav above (node 206:770) — paging through the waveform's
+   individual objects (node 206:774) underneath. */
+.today-wave-nav-btn {
+  position: absolute;
+  top: 318px;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.today-wave-nav-btn:disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.today-wave-nav-btn--prev {
+  left: 48px;
+}
+
+.today-wave-nav-btn--next {
+  left: 602px;
+}
+
+/* node 206:773's own box, bottom-aligned at the divider (node 206:786) —
+   each waveform object (node 206:774) is translated so it sits centered
+   within this stage's own height (js/today.js), not the full card. */
+.today-wave-clip {
+  position: absolute;
+  left: 0;
+  top: 337px;
+  width: 700px;
+  height: 285px;
+  overflow: hidden;
+}
+
+.today-wave-img {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 284.242px;
+  width: auto;
+  max-width: none;
+  transform: translate(0, 0);
+  transition: transform 0.3s ease;
+}
+
+.today-wave-divider {
+  position: absolute;
+  left: 0;
+  top: 621px;
+  width: 700px;
+}
+
+/* Each wave object's tooltip (nodes 210:791/812/822/831/839/847, 211:856)
+   appears together with it (js/today.js) — always above the nav arrows,
+   vertically centered in the blank band above them (343.371px tall), with
+   every tooltip sharing the same height (142.122px) so that band-centering
+   lands them all at the same top. Horizontally centered on the stage. */
+.today-wave-tooltip {
+  position: absolute;
+  top: 100.625px;
+  height: 142.122px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.today-wave-tooltip.is-visible {
+  opacity: 1;
+}
+
+.today-wave-tooltip img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.today-wave-tooltip-time {
+  position: absolute;
+  left: 74px;
+  top: 28px;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 19.091px;
+  color: #bebbb9;
+  white-space: nowrap;
+}
+
+.today-wave-tooltip-text {
+  position: absolute;
+  left: 74px;
+  top: 57px;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 27.576px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.today-wave-tooltip--wide {
+  left: 150.606px;
+  width: 398.788px;
+}
+
+.today-wave-tooltip--narrow {
+  left: 213px;
+  width: 274px;
+}
+
+.today-wave-tooltip--medium {
+  left: 198.5px;
+  width: 303px;
+}
+
+/* Stat cards */
+.today-stat-card {
+  position: absolute;
+  width: 505px;
+  height: 228px;
+  background: #ffffff;
+  border-radius: 20px;
+}
+
+.today-stat-label {
+  position: absolute;
+  left: 64px;
+  top: 60px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 32px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.today-stat-value {
+  position: absolute;
+  left: 64px;
+  top: 130px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 52px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+/* Movement timeline */
+.today-timeline-title {
+  position: absolute;
+  left: 826px;
+  top: 561px;
+  font-family: 'Prelia', serif;
+  font-weight: normal;
+  font-size: 32px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.today-timeline {
+  position: absolute;
+  left: 826px;
+  top: 639px;
+  width: 1028px;
+  height: 363px;
+  overflow-y: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.today-timeline.is-dragging {
+  cursor: grabbing;
+}
+
+.today-timeline-list {
+  position: relative;
+  padding-left: 8.5px;
+}
+
+.today-timeline-list::before {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 17px;
+  bottom: 17px;
+  border-left: 3px dashed #bebbb9;
+}
+
+/* Each row is a 44px content band with a 59px gap to the next (103px
+   start-to-start, matching Figma) — not one evenly-centered 103px slot. */
+.today-timeline-row {
+  position: relative;
+  height: 44px;
+  margin-bottom: 59px;
+}
+
+.today-timeline-row:last-child {
+  margin-bottom: 0;
+}
+
+.today-timeline-cluster {
+  position: absolute;
+  left: 0;
+  top: 8.5px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.today-timeline-dot {
+  position: relative;
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 3px solid #f5f3f1;
+}
+
+.today-timeline-time {
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: #bebbb9;
+  white-space: nowrap;
+}
+
+.today-timeline-tag {
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: #bebbb9;
+  white-space: nowrap;
+}
+
+.today-timeline-name {
+  position: absolute;
+  left: 626px;
+  top: 2px;
+  transform: translateX(-50%);
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 36px;
+  color: #454443;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.today-timeline-count {
+  position: absolute;
+  left: 934px;
+  top: 0;
+  width: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  color: #454443;
+  white-space: nowrap;
+}

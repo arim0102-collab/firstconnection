@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>새 기록</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/calendar.css">
+<link rel="stylesheet" href="css/record.css">
+<link rel="stylesheet" href="css/bluetooth-modal.css">
+</head>
+<body>
+<div class="screen" data-node-id="139:186">
+
+  <header class="cal-topbar">
+    <a class="icon-btn" href="index.html" aria-label="홈 화면으로 돌아가기">
+      <img src="assets/icons/arrow-back-ios-new.svg" alt="">
+    </a>
+    <button class="icon-btn" type="button" id="menuToggle" aria-label="메뉴" aria-expanded="false" aria-controls="sideMenu">
+      <img src="assets/icons/dehaze.svg" alt="">
+    </button>
+  </header>
+
+  <h1 class="record-title">New record</h1>
+
+  <section class="record-card" id="recordCard" aria-label="녹화 기록">
+    <div class="record-chart">
+      <div class="record-waveform-clip">
+        <div class="record-waveform" id="recordWaveform">
+          <div class="record-waveform-inset">
+            <img src="assets/icons/record-waveform.svg" alt="">
+          </div>
+        </div>
+      </div>
+      <span class="record-baseline record-baseline--left"></span>
+      <span class="record-baseline record-baseline--right"></span>
+      <span class="record-dot"></span>
+
+      <div class="record-tooltip record-tooltip--1">
+        <img src="assets/icons/record-tooltip-bubble.svg" alt="">
+        <p>미세한 움직임이 포착되었어요</p>
+      </div>
+      <div class="record-tooltip record-tooltip--2">
+        <img src="assets/icons/record-tooltip-bubble.svg" alt="">
+        <p>딸꾹질 소리가 들려오고 있어요</p>
+      </div>
+      <div class="record-tooltip record-tooltip--3">
+        <img src="assets/icons/record-tooltip-bubble.svg" alt="">
+        <p>아이가 몸을 크게 뒤집었어요</p>
+      </div>
+      <div class="record-tooltip record-tooltip--4">
+        <img src="assets/icons/record-tooltip-bubble.svg" alt="">
+        <p>아이가 팔다리를 쭉 뻗고 있어요</p>
+      </div>
+      <div class="record-tooltip record-tooltip--5">
+        <img src="assets/icons/record-tooltip-bubble.svg" alt="">
+        <p>규칙적인 잔진동이 느껴져요</p>
+      </div>
+      <div class="record-tooltip record-tooltip--6">
+        <img src="assets/icons/record-tooltip-bubble.svg" alt="">
+        <p>손가락을 작게 꼼지락거려요</p>
+      </div>
+      <div class="record-tooltip record-tooltip--7">
+        <img src="assets/icons/record-tooltip-bubble.svg" alt="">
+        <p>갑작스럽게 몸이 움직였어요</p>
+      </div>
+    </div>
+
+    <img class="record-divider" src="assets/icons/record-divider.svg" alt="">
+
+    <div class="record-legend">
+      <div class="record-legend-row record-legend-row--1">
+        <span class="record-legend-label">고요한 움직임</span>
+        <span class="record-legend-count"><span>00</span><span>회</span></span>
+      </div>
+      <div class="record-legend-row record-legend-row--2">
+        <span class="record-legend-label">안정적 움직임</span>
+        <span class="record-legend-count"><span>00</span><span>회</span></span>
+      </div>
+      <div class="record-legend-row record-legend-row--3">
+        <span class="record-legend-label">활발한 움직임</span>
+        <span class="record-legend-count"><span>00</span><span>회</span></span>
+      </div>
+      <div class="record-legend-row record-legend-row--4">
+        <span class="record-legend-label">리듬있는 움직임</span>
+        <span class="record-legend-count"><span>00</span><span>회</span></span>
+      </div>
+    </div>
+
+    <p class="record-timer">00 : 00 : 00</p>
+    <div class="record-controls-pill"></div>
+    <img class="record-controls" src="assets/icons/record-controls-notriangle.svg" alt="녹화 컨트롤">
+    <button class="record-play-btn" id="recordPlayBtn" type="button" aria-label="무빙 재생">
+      <svg class="record-play-icon" id="recordPlayIcon" viewBox="0 0 31.5 36.373" aria-hidden="true">
+        <path d="M31.5 18.187 L0 36.373 L0 0 Z" fill="currentColor"></path>
+      </svg>
+      <svg class="record-pause-icon is-icon-hidden" id="recordPauseIcon" viewBox="0 0 34.093 39.338" aria-hidden="true">
+        <rect x="0" y="0" width="13.113" height="39.338" fill="currentColor"></rect>
+        <rect x="20.98" y="0" width="13.113" height="39.338" fill="currentColor"></rect>
+      </svg>
+    </button>
+    <button class="nav-link record-reset-btn" id="recordResetBtn" type="button" aria-label="기록 초기화"
+            data-icon-default="assets/icons/record-reset.svg"
+            data-icon-active="assets/icons/record-reset-active.svg">
+      <img src="assets/icons/record-reset.svg" alt="">
+    </button>
+  </section>
+
+  <div class="menu-scrim" id="menuScrim"></div>
+  <nav class="sidenav sidenav--drawer" id="sideMenu" aria-label="주 메뉴">
+    <ul>
+      <li class="nav-item">
+        <a class="nav-content nav-link" href="index.html"
+           data-icon-default="assets/icons/home.svg"
+           data-icon-active="assets/icons/home-active.svg">
+          <img src="assets/icons/home.svg" alt="">
+          <span>메인 화면</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="nav-content nav-link bt-connect-trigger"
+                data-icon-default="assets/icons/bluetooth.svg"
+                data-icon-active="assets/icons/bluetooth-active.svg">
+          <img src="assets/icons/bluetooth.svg" alt=""><span>블루투스</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/album-active.svg" alt=""><span class="nav-content--active">기록 시작</span></span>
+      </li>
+      <li class="nav-item">
+        <a class="nav-content nav-link" href="calendar.html"
+           data-icon-default="assets/icons/calendar-today.svg"
+           data-icon-active="assets/icons/calendar-today-active.svg">
+          <img src="assets/icons/calendar-today.svg" alt="">
+          <span>캘린더</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/account-circle.svg" alt=""><span>마이홈</span></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/brightness5.svg" alt=""><span>설정</span></span>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="bt-scrim" id="btScrim"></div>
+  <div class="bt-dialog" id="btConfirmDialog" role="dialog" aria-modal="true" aria-labelledby="btConfirmTitle">
+    <p class="bt-dialog-title" id="btConfirmTitle">패치와 연결하시겠습니까?</p>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--cancel" id="btCancelBtn">취소</button>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--connect" id="btConnectBtn">연결하기</button>
+  </div>
+  <div class="bt-dialog" id="btSuccessDialog" role="dialog" aria-modal="true" aria-labelledby="btSuccessTitle">
+    <p class="bt-dialog-title" id="btSuccessTitle">패치와 연결되었습니다</p>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--close" id="btCloseBtn">창 닫기</button>
+  </div>
+
+  <div class="bt-scrim" id="resetScrim"></div>
+  <div class="bt-dialog" id="resetConfirmDialog" role="dialog" aria-modal="true" aria-labelledby="resetConfirmTitle">
+    <p class="bt-dialog-title" id="resetConfirmTitle">기록을 초기화하시겠습니까?</p>
+    <button type="button" class="bt-dialog-btn reset-dialog-btn--yes" id="resetYesBtn">예</button>
+    <button type="button" class="bt-dialog-btn reset-dialog-btn--no" id="resetNoBtn">아니오</button>
+  </div>
+
+  <div class="bt-scrim" id="completeScrim"></div>
+  <div class="bt-dialog" id="completeDialog" role="dialog" aria-modal="true" aria-labelledby="completeTitle">
+    <p class="bt-dialog-title" id="completeTitle">기록이 완료되었습니다</p>
+    <button type="button" class="bt-dialog-btn complete-dialog-btn--go" id="completeGoBtn">오늘의 기록 보러가기</button>
+  </div>
+
+</div>
+<script src="js/stage.js"></script>
+<script src="js/side-menu.js"></script>
+<script src="js/nav-link.js"></script>
+<script src="js/record-motion.js"></script>
+<script src="js/record-reset.js"></script>
+<script src="js/record-complete.js"></script>
+<script src="js/led-serial.js"></script>
+<script src="js/led-wifi.js"></script>
+<script src="js/led-transport.js"></script>
+<script src="js/led-sync.js"></script>
+<script src="js/bluetooth-connect.js"></script>
+</body>
+</html>

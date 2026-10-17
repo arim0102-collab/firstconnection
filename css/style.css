@@ -1,0 +1,441 @@
+@font-face {
+  font-family: 'Prelia';
+  src: local('Prelia');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #f5f3f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Fixed 16:9 stage: .screen always stays 1920x1080 and is scaled as a
+   whole to fit the viewport, so every element keeps its original
+   position/ratio instead of reflowing. */
+.screen {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  flex-shrink: 0;
+  background: #f5f3f1;
+  font-family: 'Hakgyoansim Bareondotum', 'Noto Sans KR', sans-serif;
+  overflow: hidden;
+  transform-origin: center center;
+}
+
+/* Page-to-page fade: the browser's native cross-document view transition
+   crossfades the whole page (old page fading out, new one fading in) on
+   every same-origin navigation — link clicks and script-set
+   location.href alike — with no JS timing to get wrong. Unsupported
+   browsers just navigate instantly, no broken state either way. */
+@view-transition {
+  navigation: auto;
+}
+
+/* Home screen only: slide the sidebar out to the right before leaving
+   the page — same transform/timing as .sidenav--drawer's own closed
+   state on the other pages (see css/calendar.css), just triggered by
+   js/home-sidebar-exit.js instead of the drawer's open/close toggle. */
+#homeSidenav {
+  transition: transform 0.25s ease;
+}
+
+#homeSidenav.is-leaving {
+  transform: translateX(100%);
+}
+
+/* First-visit splash (js/splash.js) */
+.splash-screen {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.splash-screen.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-brand {
+  position: absolute;
+  left: 733px;
+  top: 503px;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.splash-icon {
+  width: 47.29px;
+  height: 74px;
+}
+
+.splash-title {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Prelia', serif;
+  font-size: 64px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.splash-copyright {
+  position: absolute;
+  left: 50%;
+  top: 1009px;
+  transform: translateX(-50%);
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Prelia', serif;
+  font-size: 16px;
+  color: #bebbb9;
+  white-space: nowrap;
+}
+
+/* Header */
+.connection-header {
+  position: absolute;
+  left: 82px;
+  top: 84px;
+  height: 48.51px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.connection-icon {
+  width: 31px;
+  height: 48.51px;
+}
+
+.connection-title {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Prelia', serif;
+  font-size: 32px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.status-bar {
+  position: absolute;
+  left: 82px;
+  top: 164px;
+  width: 1232px;
+  height: 39px;
+  background: #ffffff;
+  border-radius: 138.52px;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 20px;
+  color: #454443;
+}
+
+.status-dot {
+  position: absolute;
+  left: 31px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.status-label {
+  position: absolute;
+  left: 96px;
+  top: 13px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  white-space: nowrap;
+}
+
+.status-value {
+  position: absolute;
+  left: 285px;
+  top: 13px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  white-space: nowrap;
+}
+
+.status-line {
+  position: absolute;
+  left: 377px;
+  top: 20px;
+  width: 580px;
+}
+
+.status-line img {
+  width: 100%;
+}
+
+.status-battery {
+  position: absolute;
+  right: 67px;
+  top: 13px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  white-space: nowrap;
+}
+
+/* Day summary */
+.day-label {
+  position: absolute;
+  left: 108px;
+  top: 318px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Prelia', serif;
+  font-size: 64px;
+  color: #454443;
+}
+
+.day-number {
+  position: absolute;
+  left: 98px;
+  top: 407px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Prelia', serif;
+  font-size: 135px;
+  color: #ff9294;
+}
+
+.day-since {
+  position: absolute;
+  left: 98px;
+  top: 556px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Prelia', serif;
+  font-size: 32px;
+  color: #bebbb9;
+}
+
+.recent-record {
+  position: absolute;
+  left: 98px;
+  top: 665px;
+  width: max-content;
+  padding: 11px 25px 10px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #ffffff;
+  border-radius: 100px;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: #454443;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.recent-record-arrow {
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+}
+
+/* Record cards (This month's / This week's record) share one internal
+   coordinate system; only the chart box differs per variant below. */
+.record-card {
+  position: absolute;
+  top: 269px;
+  width: 425px;
+  height: 700px;
+  background: #ffffff;
+  border-radius: 20px;
+}
+
+.record-card--month {
+  left: 444px;
+}
+
+.record-card--week {
+  left: 889px;
+}
+
+.card-title {
+  position: absolute;
+  left: 36px;
+  top: 55px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Prelia', serif;
+  font-weight: normal;
+  font-size: 32px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.chart {
+  position: absolute;
+}
+
+.chart-line {
+  position: absolute;
+  max-width: none;
+}
+
+.chart--month .chart-line--back { left: 53px; top: 152px; width: 319px; height: 126px; }
+.chart--month .chart-line--front { left: 53px; top: 173px; width: 316px; height: 105px; }
+.chart--week .chart-line--back { left: 53px; top: 141.77px; width: 316px; height: 136.229px; }
+.chart--week .chart-line--front { left: 53px; top: 132.5px; width: 316px; height: 145.5px; }
+
+.legend-swatch {
+  position: absolute;
+  top: 330px;
+  width: 13px;
+}
+
+.legend-swatch--a { left: 53px; }
+.legend-swatch--b { left: 184px; }
+
+.legend-label {
+  position: absolute;
+  top: 322px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.legend-label--a { left: 72px; color: #454443; }
+.legend-label--b { left: 203px; color: #bebbb9; }
+
+.stat-dot {
+  position: absolute;
+  left: 42px;
+  width: 16px;
+  height: 16px;
+}
+
+.stat-dot--1 { top: 393px; }
+.stat-dot--2 { top: 551px; }
+
+.stat-body {
+  position: absolute;
+  left: 81px;
+}
+
+.stat-body--1 { top: 394px; width: 180px; }
+.stat-body--2 { top: 551px; width: 275px; }
+
+.stat-label {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 24px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.stat-value {
+  margin-top: 30px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  font-family: 'Prelia', serif;
+}
+
+.stat-number {
+  font-size: 64px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  color: #ff9294;
+}
+
+.stat-unit {
+  font-size: 32px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  color: #454443;
+  margin-right: 10px;
+}
+
+/* Side navigation */
+.sidenav {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 442px;
+  height: 1080px;
+  background: #ffffff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.sidenav ul {
+  list-style: none;
+}
+
+.nav-item {
+  position: absolute;
+  left: 102px;
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  color: #bebbb9;
+  text-decoration: none;
+}
+
+button.nav-content {
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nav-content img {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-link:active,
+.nav-link.is-pressed {
+  color: #454443;
+}
+
+.nav-content--active {
+  color: #454443;
+}
+
+.nav-item:nth-child(1) { top: 123px; }
+.nav-item:nth-child(2) { top: 280px; }
+.nav-item:nth-child(3) { top: 437px; }
+.nav-item:nth-child(4) { top: 594px; }
+.nav-item:nth-child(5) { top: 751px; }
+.nav-item:nth-child(6) { top: 908px; }

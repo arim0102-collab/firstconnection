@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>홈 화면</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/bluetooth-modal.css">
+</head>
+<body>
+<div class="screen" data-node-id="141:818">
+
+  <div class="splash-screen" id="splashScreen" data-node-id="78:956">
+    <div class="splash-brand">
+      <img class="splash-icon" src="assets/icons/group-connection.svg" alt="">
+      <p class="splash-title">connection</p>
+    </div>
+    <p class="splash-copyright">Copyright 2026. connection All rights reserved.</p>
+  </div>
+  <script>
+    // Runs immediately as the parser reaches it, before anything paints,
+    // so a repeat visit never flashes the splash before js/splash.js
+    // (loaded at the end of the page) gets a chance to act.
+    if (localStorage.getItem('splashShown')) {
+      document.getElementById('splashScreen').style.display = 'none';
+    }
+  </script>
+
+  <!-- Header -->
+  <div class="connection-header">
+    <img class="connection-icon" src="assets/icons/group-connection.svg" alt="" data-node-id="141:821">
+    <p class="connection-title" data-node-id="141:820">First connection</p>
+  </div>
+
+  <div class="status-bar" data-node-id="150:249">
+    <span class="status-dot"><img src="assets/icons/dot.svg" alt=""></span>
+    <span class="status-label">패치 연결 상태</span>
+    <span class="status-value">ON</span>
+    <span class="status-line"><img src="assets/icons/line-battery.svg" alt=""></span>
+    <span class="status-battery">남은 배터리 80%</span>
+  </div>
+
+  <!-- Day summary -->
+  <p class="day-label" data-node-id="142:909">Day</p>
+  <p class="day-number" data-node-id="141:827">150</p>
+  <p class="day-since" data-node-id="142:908">Since 2026.05.24</p>
+  <a class="recent-record" href="today.html" data-node-id="211:855">
+    <span>가장 최근 기록</span>
+    <img src="assets/icons/arrow-back-active.svg" alt="" class="recent-record-arrow">
+  </a>
+
+  <!-- This month's record -->
+  <section class="record-card record-card--month" aria-label="This month's record" data-node-id="150:276">
+    <h2 class="card-title">This month's record</h2>
+    <div class="chart chart--month">
+      <img class="chart-line chart-line--front" src="assets/icons/chart-month-line1.svg" alt="">
+      <img class="chart-line chart-line--back" src="assets/icons/chart-month-line2.svg" alt="">
+    </div>
+    <span class="legend-swatch legend-swatch--a"><img src="assets/icons/legend-line1.svg" alt=""></span>
+    <p class="legend-label legend-label--a">This month</p>
+    <span class="legend-swatch legend-swatch--b"><img src="assets/icons/legend-line2.svg" alt=""></span>
+    <p class="legend-label legend-label--b">Last month</p>
+
+    <span class="stat-dot stat-dot--1"><img src="assets/icons/ellipse-legend.svg" alt=""></span>
+    <div class="stat-body stat-body--1">
+      <p class="stat-label">이번 달 기록 횟수</p>
+      <p class="stat-value"><span class="stat-number">16</span><span class="stat-unit">times</span></p>
+    </div>
+
+    <span class="stat-dot stat-dot--2"><img src="assets/icons/ellipse-legend.svg" alt=""></span>
+    <div class="stat-body stat-body--2">
+      <p class="stat-label">이번 달 총 기록 시간</p>
+      <p class="stat-value">
+        <span class="stat-number">200</span><span class="stat-unit">h</span>
+        <span class="stat-number">56</span><span class="stat-unit">m</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- This week's record -->
+  <section class="record-card record-card--week" aria-label="This week's record" data-node-id="147:224">
+    <h2 class="card-title">This week's record</h2>
+    <div class="chart chart--week">
+      <img class="chart-line chart-line--front" src="assets/icons/chart-week-line1.svg" alt="">
+      <img class="chart-line chart-line--back" src="assets/icons/chart-week-line2.svg" alt="">
+    </div>
+    <span class="legend-swatch legend-swatch--a"><img src="assets/icons/legend-line1.svg" alt=""></span>
+    <p class="legend-label legend-label--a">This week</p>
+    <span class="legend-swatch legend-swatch--b"><img src="assets/icons/legend-line2.svg" alt=""></span>
+    <p class="legend-label legend-label--b">Last week</p>
+
+    <span class="stat-dot stat-dot--1"><img src="assets/icons/ellipse-legend.svg" alt=""></span>
+    <div class="stat-body stat-body--1">
+      <p class="stat-label">이번 주 기록 횟수</p>
+      <p class="stat-value"><span class="stat-number">2</span><span class="stat-unit">times</span></p>
+    </div>
+
+    <span class="stat-dot stat-dot--2"><img src="assets/icons/ellipse-legend.svg" alt=""></span>
+    <div class="stat-body stat-body--2">
+      <p class="stat-label">이번 주 총 기록 시간</p>
+      <p class="stat-value">
+        <span class="stat-number">4</span><span class="stat-unit">h</span>
+        <span class="stat-number">12</span><span class="stat-unit">m</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Side navigation -->
+  <nav class="sidenav" id="homeSidenav" aria-label="주 메뉴">
+    <ul>
+      <li class="nav-item nav-item--active">
+        <span class="nav-content"><img src="assets/icons/home-active.svg" alt=""><span class="nav-content--active">메인 화면</span></span>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="nav-content nav-link bt-connect-trigger"
+                data-icon-default="assets/icons/bluetooth.svg"
+                data-icon-active="assets/icons/bluetooth-active.svg">
+          <img src="assets/icons/bluetooth.svg" alt=""><span>블루투스</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <a class="nav-content nav-link" href="record.html"
+           data-icon-default="assets/icons/album.svg"
+           data-icon-active="assets/icons/album-active.svg">
+          <img src="assets/icons/album.svg" alt="">
+          <span>기록 시작</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-content nav-link" href="calendar.html"
+           data-icon-default="assets/icons/calendar-today.svg"
+           data-icon-active="assets/icons/calendar-today-active.svg">
+          <img src="assets/icons/calendar-today.svg" alt="">
+          <span>캘린더</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/account-circle.svg" alt=""><span>마이홈</span></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-content"><img src="assets/icons/brightness5.svg" alt=""><span>설정</span></span>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="bt-scrim" id="btScrim"></div>
+  <div class="bt-dialog" id="btConfirmDialog" role="dialog" aria-modal="true" aria-labelledby="btConfirmTitle">
+    <p class="bt-dialog-title" id="btConfirmTitle">패치와 연결하시겠습니까?</p>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--cancel" id="btCancelBtn">취소</button>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--connect" id="btConnectBtn">연결하기</button>
+  </div>
+  <div class="bt-dialog" id="btSuccessDialog" role="dialog" aria-modal="true" aria-labelledby="btSuccessTitle">
+    <p class="bt-dialog-title" id="btSuccessTitle">패치와 연결되었습니다</p>
+    <button type="button" class="bt-dialog-btn bt-dialog-btn--close" id="btCloseBtn">창 닫기</button>
+  </div>
+
+</div>
+<script src="js/stage.js"></script>
+<script src="js/splash.js"></script>
+<script src="js/nav-link.js"></script>
+<script src="js/home-sidebar-exit.js"></script>
+<script src="js/led-serial.js"></script>
+<script src="js/led-wifi.js"></script>
+<script src="js/led-transport.js"></script>
+<script src="js/bluetooth-connect.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+.bt-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 20;
+}
+
+.bt-scrim.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bt-dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+  width: 610px;
+  height: 262px;
+  background: #ffffff;
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 21;
+}
+
+.bt-dialog.is-open {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.bt-dialog-title {
+  position: absolute;
+  left: 50%;
+  top: 67px;
+  transform: translateX(-50%);
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 36px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.bt-dialog-btn {
+  position: absolute;
+  top: 153px;
+  height: 61px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 30px;
+  background: #f5f3f1;
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 32px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.bt-dialog-btn:hover {
+  background: #ebe8e5;
+}
+
+.bt-dialog-btn--cancel {
+  left: 60px;
+  width: 240px;
+}
+
+.bt-dialog-btn--connect {
+  left: 310px;
+  width: 240px;
+}
+
+.bt-dialog-btn--close {
+  left: 67px;
+  width: 493px;
+}

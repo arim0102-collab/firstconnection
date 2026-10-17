@@ -1,0 +1,281 @@
+.cal-topbar {
+  position: absolute;
+  left: 66px;
+  top: 69px;
+  width: 1789px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.icon-btn img {
+  width: 100%;
+  height: 100%;
+}
+
+.cal-title-row {
+  position: absolute;
+  left: 74px;
+  top: 162px;
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+
+.cal-title {
+  font-family: 'Prelia', serif;
+  font-weight: normal;
+  font-size: 64px;
+  color: #454443;
+}
+
+.cal-date {
+  font-family: 'Hakgyoansim Bareondotum', sans-serif;
+  font-size: 24px;
+  color: #454443;
+}
+
+.cal-card {
+  position: absolute;
+  left: 66px;
+  top: 302px;
+  width: 1248px;
+  height: 700px;
+  background: #ffffff;
+  border-radius: 20px;
+}
+
+.cal-month {
+  position: absolute;
+  left: 50%;
+  top: 45px;
+  transform: translateX(-50%);
+  font-family: 'Prelia', serif;
+  font-weight: normal;
+  font-size: 50px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.cal-weekdays {
+  position: absolute;
+  left: 101px;
+  top: 165px;
+  width: 1044px;
+  height: 42px;
+  display: grid;
+  grid-template-columns: repeat(7, 60px);
+  column-gap: 104px;
+}
+
+.cal-weekday {
+  font-family: 'Prelia', serif;
+  font-size: 28px;
+  color: #454443;
+  text-align: center;
+  line-height: 42px;
+}
+
+.cal-grid {
+  position: absolute;
+  left: 101px;
+  top: 243px;
+  width: 1044px;
+  display: grid;
+  grid-template-columns: repeat(7, 60px);
+  grid-template-rows: repeat(6, 60px);
+  column-gap: 104px;
+  row-gap: 14px;
+}
+
+.cal-day {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cal-day--today {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cal-day-num {
+  position: relative;
+  z-index: 1;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  font-family: 'Prelia', serif;
+  font-size: 24px;
+  color: #454443;
+}
+
+.cal-day--muted .cal-day-num {
+  color: #bebbb9;
+}
+
+.cal-day--sun .cal-day-num {
+  color: #ff8486;
+}
+
+.cal-day--sat .cal-day-num {
+  color: #76bdff;
+}
+
+.cal-day--mark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.cal-day--mark-1::before { background-image: url('../assets/icons/cal-mark-1.svg'); }
+.cal-day--mark-2::before { background-image: url('../assets/icons/cal-mark-2.svg'); }
+.cal-day--mark-3::before { background-image: url('../assets/icons/cal-mark-3.svg'); }
+.cal-day--mark-4::before { background-image: url('../assets/icons/cal-mark-4.svg'); }
+
+.cal-today-dot {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+}
+
+.cal-today-dot img {
+  width: 100%;
+  height: 100%;
+}
+
+.month-panel {
+  position: absolute;
+  left: 1350px;
+  top: 302px;
+  width: 505px;
+  height: 700px;
+  background: #ffffff;
+  border-radius: 20px;
+}
+
+.month-panel-year {
+  position: absolute;
+  left: 50%;
+  top: 45px;
+  transform: translateX(-50%);
+  font-family: 'Prelia', serif;
+  font-weight: normal;
+  font-size: 50px;
+  color: #454443;
+  white-space: nowrap;
+}
+
+.month-picker {
+  position: absolute;
+  left: 85px;
+  top: 165px;
+  width: 335px;
+  height: 508px;
+  overflow: hidden;
+}
+
+/* The only scrolling element. The pill and fades below are siblings, not
+   children, of this, so they stay fixed on screen while the list scrolls
+   underneath them. overflow-y:hidden blocks wheel/scrollbar scrolling
+   (and the scrollbar itself) entirely — js/calendar.js drags scrollTop
+   directly instead; see js/today.js for the same pattern. */
+.month-scroll {
+  position: absolute;
+  inset: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.month-scroll.is-dragging {
+  cursor: grabbing;
+}
+
+/* Padding top/bottom = (picker height - item height) / 2, so the first and
+   last months can still scroll all the way to the centered pill. */
+.month-list {
+  list-style: none;
+  padding: 233px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.month-list li {
+  height: 42px;
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Prelia', serif;
+  font-size: 28px;
+  color: #454443;
+}
+
+.month-list li.month-list-item--current {
+  color: #ff9294;
+}
+
+.month-picker-fade {
+  position: absolute;
+  left: 0;
+  width: 335px;
+  height: 90px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.month-picker-fade--top {
+  top: 0;
+  background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0));
+}
+
+.month-picker-fade--bottom {
+  bottom: 0;
+  background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0));
+}
+
+/* Slide-in menu drawer, opened by the hamburger icon */
+.menu-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 10;
+}
+
+.menu-scrim.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidenav--drawer {
+  z-index: 11;
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+}
+
+.sidenav--drawer.is-open {
+  transform: translateX(0);
+}
