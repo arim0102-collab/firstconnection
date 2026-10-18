@@ -66,21 +66,23 @@
     closeSuccess();
   });
 
-  // Tries the board's WiFi link first — it's silent (just a WebSocket
-  // connect attempt) and succeeds immediately if the PC is already on the
-  // board's WiFi, so a wireless setup never has to deal with the USB
-  // picker at all. Only if that fails (board's on USB instead, or not on
-  // WiFi) do we fall back to USB serial, which needs an explicit user
-  // gesture and pops the OS port picker.
+  // USB serial is the primary (and, for now, only practical) path: just
+  // power the board over USB and click "연결하기" — no WiFi join, no
+  // board-hosted page, nothing else to set up. It's tried first (and
+  // synchronously, with no await before it) so the click's user-gesture
+  // window is still fresh when requestPort() needs it — awaiting the WiFi
+  // attempt first, like this used to, could burn that window on a
+  // connection that was going to fail anyway. WiFi is kept as a fallback
+  // for whoever does want it, but it's no longer the default path.
   async function connectDevice() {
     if (!window.LedTransport) {
       return true; // no LED integration on this page — just a themed dialog
     }
-    if (window.LedWifi) {
-      if (await LedWifi.connect(DEFAULT_WIFI_IP)) return true;
-    }
     if (window.LedSerial && 'serial' in navigator) {
       if (await LedSerial.connect()) return true;
+    }
+    if (window.LedWifi) {
+      if (await LedWifi.connect(DEFAULT_WIFI_IP)) return true;
     }
     return false;
   }

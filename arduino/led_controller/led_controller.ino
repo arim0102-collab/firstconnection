@@ -4,9 +4,12 @@
  * Drives a NeoPixel (WS2812/WS2812B) strip to follow the chart in
  * record.html, over either connection the page offers:
  *   - USB serial (js/led-serial.js)
- *   - the board's own WiFi hotspot, over a WebSocket (js/led-wifi.js)
+ *   - classic Bluetooth (SPP) — js/led-serial.js again: once paired in
+ *     Windows' own Bluetooth settings (see "Bluetooth pairing" below),
+ *     this board shows up as an ordinary COM port in the same Web Serial
+ *     picker, wired or not — no separate code path needed
  * Both accept the same line of text, "R,G,B" with each channel 0-255 —
- * whichever one sends last wins.
+ * whichever sends last wins.
  *
  * The incoming R,G,B is only ever used for brightness/on-off here, not
  * hue: the strip's actual color comes from its own fixed COLOR_SEQUENCE
@@ -14,7 +17,7 @@
  * advances to the next color in that list (looping back to the start
  * after the last one) — see parseLine().
  *
- * Wiring (ESP32 / ESP32-C3 Super Mini):
+ * Wiring (ESP32):
  *   NeoPixel VCC  -> 3V3 or 5V pin (whichever the board exposes; share
  *                    GND with it either way)
  *   NeoPixel GND  -> GND
@@ -23,35 +26,52 @@
  *
  * Libraries (Arduino IDE > Tools > Manage Libraries):
  *   - "Adafruit NeoPixel" (Adafruit)
- *   - "WebSockets" by Markus Sattler / Links2004 — used for the WiFi path
+ *   - "BluetoothSerial" is bundled with the ESP32 core, nothing extra to
+ *     install.
  *
  * Connecting from record.html:
  *   The page has no separate connect button — open the side menu, tap
- *   "블루투스", then "연결하기" (js/bluetooth-connect.js). That single
- *   action tries USB serial first (via js/led-serial.js) and, if that
- *   isn't available, falls back to this board's WiFi WebSocket (via
- *   js/led-wifi.js) automatically — nothing here needs to change for
- *   either path.
+ *   "블루투스", then "연결하기" (js/bluetooth-connect.js). That tries USB
+ *   serial first (via js/led-serial.js, which also picks up a paired
+ *   Bluetooth connection — see "Bluetooth pairing" below — since Windows
+ *   exposes both as ordinary COM ports); nothing here needs to change
+ *   for either.
  *
- *   To make the WiFi path reachable:
- *   1. Upload this sketch. On boot it starts its own WiFi hotspot named
- *      by WIFI_AP_SSID below (default "LED_Controller").
- *   2. On the PC, connect to that WiFi network like any other
- *      (password is WIFI_AP_PASSWORD below, default "ledcontrol123").
- *      This replaces your normal WiFi connection while it's active — no
- *      internet is needed for the LED link itself.
- *   3. The page tries 192.168.4.1 (this board's default AP address) —
- *      no address entry needed on the page.
+ * Bluetooth pairing (wireless, no cable needed):
+ *   1. Upload this sketch. On boot it starts classic Bluetooth (SPP)
+ *      under the name set by BT_DEVICE_NAME below (default
+ *      "LED_Controller").
+ *   2. On the PC: Settings > Bluetooth & devices > Add device > Bluetooth
+ *      > select "LED_Controller". No PIN should be needed (classic ESP32
+ *      BluetoothSerial's default pairing doesn't prompt for one); if
+ *      Windows does ask, try "1234" or "0000".
+ *   3. Once paired, Windows creates virtual COM ports for it (Device
+ *      Manager > Ports, under Bluetooth) — these just show up in the
+ *      page's normal Web Serial port picker (js/led-serial.js) alongside
+ *      any USB ones.
+ *
+ * Note: this board used to also run a WiFi hotspot + WebSocket + an
+ * onboard HTTP server (so an iPad, which can't do Web Serial or pair
+ * classic Bluetooth, could load the whole app from the board itself and
+ * control the LED over WiFi). That's been dropped — Bluetooth pairing
+ * covers the "no cable" need without juggling WiFi + Bluetooth + two TCP
+ * servers on one chip at once. If that's ever needed again, js/led-wifi.js
+ * and js/bluetooth-connect.js's WiFi fallback are still in the web app;
+ * only this sketch's WiFi/HTTP/LittleFS side was removed.
  */
 
 #include <Adafruit_NeoPixel.h>
-#include <WiFi.h>
-#include <WebSocketsServer.h>
+#include <BluetoothSerial.h>
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled — pick a board/partition option with Bluetooth on (Tools menu), or a board variant that includes classic BT (plain ESP32; not C3/S3/C6, which only have BLE).
+#endif
 
 #define LED_PIN     2   // D2 / GPIO2
 #define NUM_PIXELS  7   // 7-pixel strip
 #define DEAD_PIXEL  6   // the middle pixel is last in the data chain (0-indexed) — always left off
 #define BAUD_RATE   115200
+const char *BT_DEVICE_NAME = "LED_Controller"; // shown when pairing in Windows' Bluetooth settings
 
 // How quickly the strip eases toward each new color, per loop() tick.
 // 1.0 = snap instantly to the latest value, smaller = smoother/laggier.
@@ -63,10 +83,6 @@
 // now looks too dim. Try a diffuser (tape, ping-pong ball, frosted tube)
 // too if it's still washed out at a low value.
 #define MAX_BRIGHTNESS 90
-
-const char *WIFI_AP_SSID = "LED_Controller";
-const char *WIFI_AP_PASSWORD = "ledcontrol123"; // WPA2 needs 8+ characters
-#define WEBSOCKET_PORT 81
 
 // 노랑, 분홍, 다홍, 주황, 분홍, 노랑, 다홍 — one color per on-pulse, in order.
 const uint8_t COLOR_SEQUENCE[][3] = {
@@ -85,12 +101,13 @@ uint8_t activeColorIndex = 0; // color in use while currently on
 bool wasOff = true;
 
 Adafruit_NeoPixel strip(NUM_PIXELS, LED_PIN, NEO_GRB + NEO_KHZ800);
-WebSocketsServer webSocket(WEBSOCKET_PORT);
+BluetoothSerial SerialBT;
 
 float currentR = 0, currentG = 0, currentB = 0;
 float targetR = 0, targetG = 0, targetB = 0;
 
 String lineBuffer;
+String btLineBuffer;
 
 void setup() {
   Serial.begin(BAUD_RATE);
@@ -98,28 +115,17 @@ void setup() {
   strip.setBrightness(MAX_BRIGHTNESS);
   strip.show(); // all off
 
-  WiFi.softAP(WIFI_AP_SSID, WIFI_AP_PASSWORD);
-  Serial.print("WiFi AP started: ");
-  Serial.print(WIFI_AP_SSID);
-  Serial.print(" @ ");
-  Serial.println(WiFi.softAPIP()); // normally 192.168.4.1
-
-  webSocket.begin();
-  webSocket.onEvent(onWsEvent);
+  SerialBT.begin(BT_DEVICE_NAME); // classic Bluetooth (SPP) — see "Bluetooth pairing" in the file header
+  Serial.print("Bluetooth SPP started: ");
+  Serial.println(BT_DEVICE_NAME);
 }
 
 void loop() {
-  webSocket.loop();
   readSerial();
+  readBluetoothSerial();
   stepTowardTarget();
   showColor((uint8_t)currentR, (uint8_t)currentG, (uint8_t)currentB);
   delay(10); // ~100Hz refresh, independent of how often a client sends
-}
-
-void onWsEvent(uint8_t clientId, WStype_t type, uint8_t *payload, size_t length) {
-  if (type == WStype_TEXT) {
-    parseLine(String((char *)payload));
-  }
 }
 
 void readSerial() {
@@ -130,6 +136,22 @@ void readSerial() {
       lineBuffer = "";
     } else if (c != '\r') {
       lineBuffer += c;
+    }
+  }
+}
+
+// Same line protocol as readSerial(), just over the paired Bluetooth (SPP)
+// link instead of the USB-wired one — see "Bluetooth pairing" in the file
+// header. js/led-serial.js doesn't know or care which this is; Windows
+// exposes both as plain COM ports.
+void readBluetoothSerial() {
+  while (SerialBT.available() > 0) {
+    char c = (char)SerialBT.read();
+    if (c == '\n') {
+      parseLine(btLineBuffer);
+      btLineBuffer = "";
+    } else if (c != '\r') {
+      btLineBuffer += c;
     }
   }
 }

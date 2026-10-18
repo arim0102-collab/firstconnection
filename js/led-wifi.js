@@ -10,7 +10,7 @@
  * then connect here to its default AP address, 192.168.4.1.
  */
 (function () {
-  var CONNECT_TIMEOUT_MS = 4000; // don't wait forever on a dead/unreachable host
+  var CONNECT_TIMEOUT_MS = 15000; // the board's TCP sockets can still be busy right after the page itself finished loading from it, so give a connection attempt more room than a plain dead-host timeout would need
 
   var socket = null;
   var statusEls = [];
@@ -28,6 +28,19 @@
     return new Promise(function (resolve) {
       if (!('WebSocket' in window)) {
         setStatus('이 브라우저는 WebSocket을 지원하지 않아요', true);
+        resolve(false);
+        return;
+      }
+      // A page served over https (e.g. the published GitHub Pages site)
+      // can never open a plain ws:// socket — browsers block it outright
+      // as mixed content, with no way around it short of the board
+      // speaking wss:// with a cert the browser trusts. Fail instantly
+      // instead of attempting (and silently losing time/user-activation)
+      // so js/bluetooth-connect.js's USB-serial fallback kicks in right
+      // away. WiFi mode still works as usual when this page itself is
+      // served over plain http (local testing).
+      if (window.location.protocol === 'https:') {
+        setStatus('HTTPS 페이지에서는 WiFi(ws://) 연결을 사용할 수 없어요 — USB로 연결해 주세요', true);
         resolve(false);
         return;
       }

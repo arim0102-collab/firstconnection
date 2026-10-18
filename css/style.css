@@ -1,6 +1,22 @@
+/* Bundled as actual font files (not just local()) so devices that don't
+   have these installed system-wide — an iPad, for instance — still render
+   the intended typefaces instead of silently falling back to a generic
+   font and breaking every fixed-width text layout in the design. */
 @font-face {
   font-family: 'Prelia';
-  src: local('Prelia');
+  src: local('Prelia'), url('../assets/fonts/Prelia.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Hakgyoansim Bareondotum';
+  font-weight: normal;
+  src: local('Hakgyoansim Bareondotum'), url('../assets/fonts/HakgyoansimBareondotumR.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Hakgyoansim Bareondotum';
+  font-weight: bold;
+  src: local('Hakgyoansim Bareondotum Bold'), url('../assets/fonts/HakgyoansimBareondotumB.otf') format('opentype');
 }
 
 * {
